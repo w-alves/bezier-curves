@@ -44,42 +44,60 @@ function draw() {
     background('black');
     if (FLAG_CREATE_ENABLED || FLAG_FIRST_CURVE) {
         if (FLAG_SHOW_POINTS_ENABLED) {
-            strokeWeight(10);
-
-            for (let i = 0; i < points.length; i++) {
-                for (let p of points[i]) {
-
-                    if (p.dragging || p == selected) {
-                        stroke('black');
-                        selected = p;
-
-                    } else {
-                        stroke('#FD49A0');
-                    }
-
-                    point(p.x, p.y);
-                    p.update();
-
-                    if (i == curr)
-                        p.over();
-                }
-            }
+            visualize_points();
         };
         if (FLAG_SHOW_LINES_ENABLED) {
-            stroke('#ffffff');
-            strokeWeight(2);
-
-            for (let i = 0; i < points.length; i++)
-                for (let j = 0; j < points[i].length - 1; j++)
-                    line(
-                        points[i][j].x,
-                        points[i][j].y,
-                        points[i][j + 1].x,
-                        points[i][j + 1].y
-                    );
+            visualize_lines();
         };
         if (FLAG_SHOW_CURVES_ENABLED) {
-            let bPoints = [];
+            visualize_curves();
+    }
+
+    if (!started) {
+        resize_window();
+        started = true;
+    }
+}
+
+function visualize_points() {
+    strokeWeight(10);
+
+    for (let i = 0; i < points.length; i++) {
+        for (let p of points[i]) {
+
+            if (p.dragging || p == selected) {
+                stroke('green');
+                selected = p;
+
+            } else {
+                stroke('#FD49A0');
+            }
+
+            point(p.x, p.y);
+            p.update();
+
+            if (i == curr)
+                p.over();
+        }
+    }
+}
+
+function visualize_lines() {
+    stroke('#ffffff');
+    strokeWeight(2);
+
+    for (let i = 0; i < points.length; i++)
+        for (let j = 0; j < points[i].length - 1; j++)
+            line(
+                points[i][j].x,
+                points[i][j].y,
+                points[i][j + 1].x,
+                points[i][j + 1].y
+            );   
+}
+
+function visualize_curves() {
+    let bPoints = [];
             let color;
 
             for (let k = 0; k < points.length; k++) {
@@ -93,14 +111,7 @@ function draw() {
                 }
             }
         };
-    }
-
-    if (!started) {
-        resize_window();
-        started = true;
-    }
 }
-
 
 function line_draw(x, y, color) {
     stroke(color);
@@ -193,3 +204,15 @@ function mouseClicked() {
         }
     }
 }
+
+function mousePressed() {
+    if (!FLAG_CREATE_ENABLED && points.length > 1)
+      for (let p of points[curr])
+        p.pressed();
+  }
+  
+  function mouseReleased() {
+    if (!FLAG_CREATE_ENABLED && points.length > 1)
+      for (let p of points[curr])
+        p.released();
+  }

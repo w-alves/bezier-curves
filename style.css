@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap");
+:root {
+    --bg-color: black;
+    --container-color: #f3f3f1;
+    --text-color: #ffffff;
+    --btn-color: #666666;
+    --disabled-color: #444444;
+    --selected-color: #512da8;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-color);
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body,
+input,
+button,
+textarea {
+    font-family: Lato, sans-serif;
+}
+
+nav {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    background-color: #512da8;
+    z-index: 99;
+}
+
+nav h3 {
+    color: #fff;
+    margin: auto 20px auto 40px;
+}
+
+nav li {
+    float: left;
+    list-style: none;
+    margin-left: 20px;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    justify-content: left;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+}
+
+#canvas-container {
+    height: 100%;
+    width: 100%;
+}
+
+#canvas {
+    cursor: not-allowed;
+}
+
+p {
+    color: var(--text-color);
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    color: inherit;
+}
+
+.button-description,
+.description {
+    padding-top: 5px;
+}
+
+button,
+input {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 10%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--btn-color);
+    color: var(--text-color);
+}
+
+button:hover {
+    background-color: var(--selected-color);
+}
+
+#first-button button,
+#done-adding-points button {
+    background-color: var(--selected-color);
+}
+
+#first-button button:disabled {
+    background-color: var(--disabled-color);
+    cursor: not-allowed;
+}
+
+.button-onclick {
+    position: relative;
+}
+
+input {
+    text-align: center;
+}
+
+input:focus {
+    background-color: var(--selected-color);
+}
+
+.external-box {
+    width: 80%;
+    height: 80%;
+    flex-direction: row;
+    display: flex;
+}
+
+.buttons-box {
+    width: 100%;
+    display: flex;
+    overflow-x: hidden;
+    height: 110%;
+    margin-left: 4%;
+    margin-right: -4rem;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 3;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.box {
+    border-radius: 10px;
+    background-color: var(--container-color);
+    padding: 10px;
+    height: 100%;
+    width: 92%;
+    order: 2;
+}
+
+h1 {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 3rem;
+}
+
+.button-container,
+.input-box {
+    min-width: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
